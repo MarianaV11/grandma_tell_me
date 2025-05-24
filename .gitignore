@@ -1,0 +1,33 @@
+# Arquivos e pastas que a Unity gera e não devem ser versionados
+
+# Pastas geradas automaticamente
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+MemoryCaptures/
+
+# Configurações locais de IDE
+.vscode/
+.idea/
+*.suo
+*.user
+*.userprefs
+*.csproj
+*.pidb
+*.unityproj
+*.sln
+*.tmp
+*.svd
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Git LFS (se usar)
+*.psd
+*.mp4
+*.png
+*.wav
