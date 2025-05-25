@@ -58,7 +58,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -96,7 +96,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -124,10 +124,10 @@ TextureImporter:
       name: grandma_walking_side_0
       rect:
         serializedVersion: 2
-        x: 5
+        x: 0
         y: 0
-        width: 20
-        height: 29
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,10 +146,10 @@ TextureImporter:
       name: grandma_walking_side_1
       rect:
         serializedVersion: 2
-        x: 37
+        x: 32
         y: 0
-        width: 20
-        height: 29
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,10 +168,10 @@ TextureImporter:
       name: grandma_walking_side_2
       rect:
         serializedVersion: 2
-        x: 69
+        x: 64
         y: 0
-        width: 21
-        height: 30
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -190,10 +190,10 @@ TextureImporter:
       name: grandma_walking_side_3
       rect:
         serializedVersion: 2
-        x: 101
+        x: 96
         y: 0
-        width: 21
-        height: 30
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -212,10 +212,10 @@ TextureImporter:
       name: grandma_walking_side_4
       rect:
         serializedVersion: 2
-        x: 133
+        x: 128
         y: 0
-        width: 20
-        height: 29
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,10 +234,10 @@ TextureImporter:
       name: grandma_walking_side_5
       rect:
         serializedVersion: 2
-        x: 165
+        x: 160
         y: 0
-        width: 20
-        height: 29
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -256,10 +256,10 @@ TextureImporter:
       name: grandma_walking_side_6
       rect:
         serializedVersion: 2
-        x: 197
+        x: 192
         y: 0
-        width: 20
-        height: 30
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -278,10 +278,10 @@ TextureImporter:
       name: grandma_walking_side_7
       rect:
         serializedVersion: 2
-        x: 229
+        x: 224
         y: 0
-        width: 20
-        height: 29
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -300,7 +300,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: ab9053ea74063aa4594180a17ed7de75
     internalID: 0
     vertices: []
     indices: 
@@ -309,7 +309,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      grandma_walking_side_0: 5818027473303361555
+      grandma_walking_side_1: 3948630856401009981
+      grandma_walking_side_2: 6455069977652017265
+      grandma_walking_side_3: -1102134691749556623
+      grandma_walking_side_4: 3486100376055769196
+      grandma_walking_side_5: 7040693534376472867
+      grandma_walking_side_6: 1659363258865486448
+      grandma_walking_side_7: -3209025131057783811
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

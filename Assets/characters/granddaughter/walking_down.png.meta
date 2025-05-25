@@ -61,7 +61,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -99,7 +99,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -127,9 +127,9 @@ TextureImporter:
       name: walking_down_0
       rect:
         serializedVersion: 2
-        x: 3
+        x: 0
         y: 0
-        width: 25
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -149,9 +149,9 @@ TextureImporter:
       name: walking_down_1
       rect:
         serializedVersion: 2
-        x: 35
+        x: 32
         y: 0
-        width: 25
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -171,9 +171,9 @@ TextureImporter:
       name: walking_down_2
       rect:
         serializedVersion: 2
-        x: 67
+        x: 64
         y: 0
-        width: 25
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -193,9 +193,9 @@ TextureImporter:
       name: walking_down_3
       rect:
         serializedVersion: 2
-        x: 99
+        x: 96
         y: 0
-        width: 25
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -215,9 +215,9 @@ TextureImporter:
       name: walking_down_4
       rect:
         serializedVersion: 2
-        x: 131
+        x: 128
         y: 0
-        width: 25
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -237,9 +237,9 @@ TextureImporter:
       name: walking_down_5
       rect:
         serializedVersion: 2
-        x: 163
+        x: 160
         y: 0
-        width: 25
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -259,9 +259,9 @@ TextureImporter:
       name: walking_down_6
       rect:
         serializedVersion: 2
-        x: 195
+        x: 192
         y: 0
-        width: 25
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -281,9 +281,9 @@ TextureImporter:
       name: walking_down_7
       rect:
         serializedVersion: 2
-        x: 227
+        x: 224
         y: 0
-        width: 25
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -303,9 +303,9 @@ TextureImporter:
       name: walking_down_8
       rect:
         serializedVersion: 2
-        x: 259
+        x: 256
         y: 0
-        width: 25
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -325,7 +325,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 60e756aa80d713b448d27c7ef1a83297
     internalID: 0
     vertices: []
     indices: 
@@ -334,7 +334,16 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      walking_down_0: 8345346818485585729
+      walking_down_1: -9091595608395664221
+      walking_down_2: -3773792695269256152
+      walking_down_3: 4091799387387449245
+      walking_down_4: 1119158206658757280
+      walking_down_5: -6366306490076024007
+      walking_down_6: 8783098987447470880
+      walking_down_7: 8631340276122347342
+      walking_down_8: -1640420634157675897
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
