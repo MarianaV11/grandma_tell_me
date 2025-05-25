@@ -422,7 +422,19 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Summer Tile_0: -3512906521366691514
+      Summer Tile_1: -750718975463074400
+      Summer Tile_10: -3868847700544635715
+      Summer Tile_11: -1923670618024572100
+      Summer Tile_2: -3705695336658007210
+      Summer Tile_3: 6346494044736419412
+      Summer Tile_4: 5371965351367370039
+      Summer Tile_5: 1691418675661154908
+      Summer Tile_6: -136206866107638442
+      Summer Tile_7: -5069575409859449126
+      Summer Tile_8: 2295271973713656471
+      Summer Tile_9: 2820692094042377334
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
