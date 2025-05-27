@@ -63,6 +63,7 @@ public class GameManager : MonoBehaviour {
 
     for (int row = 0; row < dimensions.y; row++) {
       for (int col = 0; col < dimensions.x; col++) {
+        // ---------- USO DE INSTANTIATE ---------- 
         Transform piece = Instantiate(piecePrefab, gameHolder);
         piece.localPosition = new Vector3(
           (-width * dimensions.x / 2) + (width * col) + (width / 2),
@@ -141,7 +142,9 @@ public class GameManager : MonoBehaviour {
     }
   }
 
-  private void SnapAndDisableIfCorrect() {
+  // ---------- SOLUÇÃO PARA POSICIONAMENTO CORRETO DAS PEÇAS ---------- 
+  private void SnapAndDisableIfCorrect()
+  {
     int pieceIndex = pieces.IndexOf(draggingPiece);
     int col = pieceIndex % dimensions.x;
     int row = pieceIndex / dimensions.x;
@@ -149,11 +152,13 @@ public class GameManager : MonoBehaviour {
     Vector2 targetPosition = new((-width * dimensions.x / 2) + (width * col) + (width / 2),
                                  (-height * dimensions.y / 2) + (height * row) + (height / 2));
 
-    if (Vector2.Distance(draggingPiece.localPosition, targetPosition) < (width / 2)) {
+    if (Vector2.Distance(draggingPiece.localPosition, targetPosition) < (width / 2))
+    {
       draggingPiece.localPosition = targetPosition;
       draggingPiece.GetComponent<BoxCollider2D>().enabled = false;
       piecesCorrect++;
-      if (piecesCorrect == pieces.Count) {
+      if (piecesCorrect == pieces.Count)
+      {
         playAgainButton.SetActive(true);
       }
     }
