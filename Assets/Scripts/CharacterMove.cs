@@ -19,7 +19,7 @@ public class CharacterMove
     {
         Vector2 pos = rb.position;
         Vector2 direcao = (destino - pos).normalized;
-        Vector2 movimento = direcao * moveSpeed * deltaTime;
+        Vector2 movimento = direcao * (moveSpeed * deltaTime);
 
         if (Vector2.Distance(pos, destino) > 0.1f)
         {
