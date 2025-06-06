@@ -1360,10 +1360,10 @@ RectTransform:
   - {fileID: 287518389}
   m_Father: {fileID: 76098223}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 150, y: -80}
+  m_SizeDelta: {x: 300, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &400337185
 MonoBehaviour:
@@ -1792,7 +1792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11870ff9b0b0211498a3d5b14ac40ab9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nomeDolevelDeJogo: 
+  nomeDolevelDeJogo: Scenes/start
   painelMenuInicial: {fileID: 365899489}
   painelOpcoes: {fileID: 2033726266}
   botaoFacil: {fileID: 400337186}
@@ -2074,10 +2074,10 @@ RectTransform:
   - {fileID: 1979104761}
   m_Father: {fileID: 76098223}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 150, y: -220}
+  m_SizeDelta: {x: 300, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1373303909
 MonoBehaviour:
@@ -2228,10 +2228,10 @@ RectTransform:
   - {fileID: 1656631054}
   m_Father: {fileID: 76098223}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 150, y: -150}
+  m_SizeDelta: {x: 300, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1375354896
 MonoBehaviour:
@@ -3053,7 +3053,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2033726267
 RectTransform:
   m_ObjectHideFlags: 0
