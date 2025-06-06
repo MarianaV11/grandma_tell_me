@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 6139e46426b084948b7619bffd92b0d7
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - spriteVerdeVivo: {fileID: 5698923356254747607, guid: 7744d6f3f257ba2489646bdebdcea58d, type: 3}
+  - spriteVermelhoVivo: {fileID: -1898700710767965819, guid: 9a9c22a17794cfd4ebe436f4fc1fbb6a, type: 3}
+  - spriteAzulVivo: {fileID: 1210975736676514458, guid: d3bea23aad5a9f040a80c2c6f1528f8e, type: 3}
+  - spriteAmareloVivo: {fileID: 6155112998787145249, guid: d43f0b4f9bb878a49be45e59f951fa60, type: 3}
+  - rodadaLabel: {instanceID: 0}
+  - cadeadoFechado: {instanceID: 0}
+  - cadeadoAberto: {instanceID: 0}
+  - buttonContainer: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

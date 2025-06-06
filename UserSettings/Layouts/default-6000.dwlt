@@ -1373,7 +1373,7 @@ MonoBehaviour:
     m_ImportLogFlags: 0
     m_FilterByTypeIntersection: 0
   m_ViewMode: 1
-  m_StartGridSize: 96
+  m_StartGridSize: 35
   m_LastFolders:
   - Assets/Scripts
   m_LastFoldersGridSize: 96
@@ -1468,7 +1468,7 @@ MonoBehaviour:
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
     m_ScrollPosition: {x: 0, y: 0}
-    m_GridSize: 96
+    m_GridSize: 35
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 197.60007
 --- !u!114 &19
