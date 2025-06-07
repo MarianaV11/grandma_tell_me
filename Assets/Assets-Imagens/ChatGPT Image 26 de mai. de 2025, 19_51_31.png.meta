@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 77966e00856d14c4e9cc2688ac8fdca0
+guid: 85e7e2db47ee5304e9d3a331db53469b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6294813627866210730
-    second: jogar_button_0
+      213: 7430628552771922488
+    second: ChatGPT Image 26 de mai. de 2025, 19_51_31_0
+  - first:
+      213: -3502961684511628172
+    second: ChatGPT Image 26 de mai. de 2025, 19_51_31_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +40,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,9 +49,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -75,7 +78,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: jogar_button_0
+      name: ChatGPT Image 26 de mai. de 2025, 19_51_31_0
       rect:
         serializedVersion: 2
-        x: 53
-        y: 53
-        width: 1334
-        height: 470
+        x: 0
+        y: 0
+        width: 7
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +131,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 65e1fb75b5454a8a0800000000000000
-      internalID: -6294813627866210730
+      spriteID: 83a68d1bc45ee1760800000000000000
+      internalID: 7430628552771922488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChatGPT Image 26 de mai. de 2025, 19_51_31_1
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 0
+        width: 793
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47461ec48eaf26fc0800000000000000
+      internalID: -3502961684511628172
       vertices: []
       indices: 
       edges: []
@@ -138,7 +163,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      jogar_button_0: -6294813627866210730
+      ChatGPT Image 26 de mai. de 2025, 19_51_31_0: 7430628552771922488
+      ChatGPT Image 26 de mai. de 2025, 19_51_31_1: -3502961684511628172
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

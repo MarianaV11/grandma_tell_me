@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 77966e00856d14c4e9cc2688ac8fdca0
+guid: 5eda30fcc460c264d8ca19a9cc4cfc04
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6294813627866210730
-    second: jogar_button_0
+      213: -5240635153079757911
+    second: transparent_red_top_right_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -48,7 +48,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: jogar_button_0
+      name: transparent_red_top_right_0
       rect:
         serializedVersion: 2
-        x: 53
-        y: 53
-        width: 1334
-        height: 470
+        x: 0
+        y: 0
+        width: 457
+        height: 455
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 65e1fb75b5454a8a0800000000000000
-      internalID: -6294813627866210730
+      spriteID: 9a3914728168547b0800000000000000
+      internalID: -5240635153079757911
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      jogar_button_0: -6294813627866210730
+      transparent_red_top_right_0: -5240635153079757911
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
