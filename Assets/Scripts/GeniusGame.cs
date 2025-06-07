@@ -34,19 +34,27 @@ public class GeniusGame : MonoBehaviour
     private CanvasGroup cadeadoFechadoGroup;
     private CanvasGroup buttonContainerGroup;
 
+    [Header("Áudio")]
+    public AudioClip somVerde;
+    public AudioClip somVermelho;
+    public AudioClip somAzul;
+    public AudioClip somAmarelo;
+    public AudioClip somErro;
+    private AudioSource audioSource;
+
     void Start()
     {
         Dificuldade modo = usarDificuldadeManual ? dificuldadeSelecionada : ModoDificuldadeSelecionado.dificuldade;
         DefinirDificuldade(modo);
 
-        // Fade do cadeado
+        audioSource = GetComponent<AudioSource>();
+
         cadeadoFechadoGroup = cadeadoFechado.GetComponent<CanvasGroup>();
         cadeadoFechadoGroup.alpha = 0f;
         cadeadoFechadoGroup.interactable = false;
         cadeadoFechadoGroup.blocksRaycasts = false;
         cadeadoFechado.SetActive(true);
 
-        // Fade do Genius
         buttonContainerGroup = buttonContainer.GetComponent<CanvasGroup>();
         buttonContainerGroup.alpha = 1f;
 
@@ -111,6 +119,8 @@ public class GeniusGame : MonoBehaviour
         Image img = btn.GetComponent<Image>();
         Color originalColor = img.color;
 
+        PlayCorSom(index);
+
         img.color = Color.white;
         yield return new WaitForSeconds(tempoPiscar);
         img.color = originalColor;
@@ -121,6 +131,8 @@ public class GeniusGame : MonoBehaviour
         Button btn = colorButtons[index];
         Image img = btn.GetComponent<Image>();
         Color originalColor = img.color;
+
+        PlayCorSom(index);
 
         img.color = Color.gray;
         yield return new WaitForSeconds(0.2f);
@@ -139,6 +151,9 @@ public class GeniusGame : MonoBehaviour
         if (playerInput[currentStep] != sequence[currentStep])
         {
             Debug.Log("Errou! Reiniciando...");
+            if (somErro != null && audioSource != null)
+                audioSource.PlayOneShot(somErro);
+
             inputEnabled = false;
             StartCoroutine(ErrorFeedback());
             return;
@@ -181,13 +196,24 @@ public class GeniusGame : MonoBehaviour
         }
     }
 
+    void PlayCorSom(int index)
+    {
+        if (audioSource == null) return;
+
+        switch (index)
+        {
+            case 0: if (somVerde != null) audioSource.PlayOneShot(somVerde); break;
+            case 1: if (somVermelho != null) audioSource.PlayOneShot(somVermelho); break;
+            case 2: if (somAzul != null) audioSource.PlayOneShot(somAzul); break;
+            case 3: if (somAmarelo != null) audioSource.PlayOneShot(somAmarelo); break;
+        }
+    }
+
     IEnumerator FinalizarGenius()
     {
         inputEnabled = false;
         rodadaLabel.gameObject.SetActive(false);
-
         yield return StartCoroutine(FadeOutGenius());
-
         yield return new WaitForSeconds(0.5f);
         StartCoroutine(FadeInCadeado());
     }
