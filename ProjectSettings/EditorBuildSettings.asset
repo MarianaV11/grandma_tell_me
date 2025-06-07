@@ -11,6 +11,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/start.unity
     guid: ece9caebd7da19f4db51d0ab5de49149
+  - enabled: 1
+    path: Assets/Scenes/Puzzle.unity
+    guid: e946bcf65a4f3c94491bcdde60f544a2
+  - enabled: 1
+    path: Assets/Scenes/startTransition.unity
+    guid: ccc1214b79308ac42833292be2aa27c9
+  - enabled: 1
+    path: Assets/Scenes/PuzzleTransition.unity
+    guid: 7710134f65a71a646bedd59def5c1510
+  - enabled: 1
+    path: Assets/Scenes/OverlayScene.unity
+    guid: 3f1fb6d209585c04db6c51473b2fb56c
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 3590b91b4603b465dbb4216d601bff33, type: 3}
   m_UseUCBPForAssetBundles: 0
