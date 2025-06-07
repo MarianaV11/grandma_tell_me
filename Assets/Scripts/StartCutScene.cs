@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 
 public class StartCutScene : MonoBehaviour
 {
@@ -19,13 +20,13 @@ public class StartCutScene : MonoBehaviour
 
     private GameObject personagem1;
     private GameObject personagem2;
-    
-    [SerializeField] private String personagem1Name;
-    [SerializeField] private String personagem2Name;
+
+    [SerializeField] private string personagem1Name;
+    [SerializeField] private string personagem2Name;
 
     private CharacterMove mover1;
     private CharacterMove mover2;
-    
+
     [SerializeField] private DialogueManager dialogueManager;
 
     [SerializeField] private Sprite personagem1Foto;
@@ -33,15 +34,14 @@ public class StartCutScene : MonoBehaviour
 
     private void Start()
     {
-        // Instancia os personagens
         personagem1 = Instantiate(personagem1Prefab, posInicial1, Quaternion.identity);
         personagem2 = Instantiate(personagem2Prefab, posInicial2, Quaternion.identity);
 
-        // Cria controladores
         mover1 = new CharacterMove(personagem1, moveSpeed);
         mover2 = new CharacterMove(personagem2, moveSpeed);
 
-        // Inicia a cutscene
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
+
         StartCoroutine(ControlarCutscene());
     }
 
@@ -53,12 +53,10 @@ public class StartCutScene : MonoBehaviour
         }
     }
 
-    
     private IEnumerator ControlarCutscene()
     {
         yield return new WaitForSeconds(1f);
-        
-        // Fala 1 - Helena parada
+
         var falas = new List<DialogueManager.DialogueLine>
         {
             new DialogueManager.DialogueLine
@@ -70,8 +68,7 @@ public class StartCutScene : MonoBehaviour
         };
         dialogueManager.StartDialogue(falas);
         yield return EsperarDialogoTerminar();
-        
-        // Fala 2 - Helena comenta sobre a casa
+
         falas = new List<DialogueManager.DialogueLine>
         {
             new DialogueManager.DialogueLine
@@ -82,8 +79,7 @@ public class StartCutScene : MonoBehaviour
             }
         };
         dialogueManager.StartDialogue(falas);
-        
-        // Helena começa a andar
+
         bool p1chegou1 = false;
         while (!p1chegou1)
         {
@@ -92,8 +88,7 @@ public class StartCutScene : MonoBehaviour
         }
 
         yield return EsperarDialogoTerminar();
-        
-        // Fala 3 - Avó Elisa responde
+
         falas = new List<DialogueManager.DialogueLine>
         {
             new DialogueManager.DialogueLine
@@ -103,11 +98,9 @@ public class StartCutScene : MonoBehaviour
                 text = "Ah Helena que bom que você chegou!"
             }
         };
-        
         dialogueManager.StartDialogue(falas);
         yield return EsperarDialogoTerminar();
-        
-        // Elisa anda em duas etapas
+
         bool p2chegou1 = false;
         while (!p2chegou1)
         {
@@ -121,9 +114,7 @@ public class StartCutScene : MonoBehaviour
             p2chegou2 = mover2.MoverPara(destino2, Time.fixedDeltaTime);
             yield return null;
         }
-        
-        
-        // Fala 3 - Avó Elisa responde
+
         falas = new List<DialogueManager.DialogueLine>
         {
             new DialogueManager.DialogueLine
@@ -142,15 +133,114 @@ public class StartCutScene : MonoBehaviour
             {
                 speakerName = personagem2Name,
                 speakerImage = personagem2Foto,
-                text = "Tome... \nEssa aqui é um retrato que a muito tempo foi tirado, nela aparece pessoas muito importante para mim \nE para você também pequena..."
-            },
+                text = "Tome... \nEssa aqui é um retrato que há muito tempo foi tirado, nela aparecem pessoas muito importantes para mim\nE para você também, pequena..."
+            }
         };
         dialogueManager.StartDialogue(falas);
         yield return EsperarDialogoTerminar();
-        
-        SceneManager.LoadScene("Scenes/Puzzle");
 
-        Debug.Log("Cutscene finalizada!");
+        // Armazena a cena atual antes de carregar a nova
+        Scene cenaAnterior = SceneManager.GetActiveScene();
+
+        // Carrega a nova cena aditivamente
+        SceneManager.LoadScene("Scenes/PuzzleTransition", LoadSceneMode.Additive);
+        yield return null;
+
+        // Define nova cena como ativa
+        Scene cenaNova = SceneManager.GetSceneByName("PuzzleTransition");
+        SceneManager.SetActiveScene(cenaNova);
+        yield return null;
+
+        // Posiciona GameHolder, se necessário
+        GameObject gameHolder = GameObject.Find("GameHolder");
+        if (gameHolder != null)
+        {
+            gameHolder.transform.position = new Vector3(0f, 0f, -1f);
+        }
+
+        // Desativa colisores da cena anterior
+        if (cenaAnterior.IsValid())
+        {
+            SetColisoresDaCena(cenaAnterior, false);
+        }
+        yield return null;
+        Debug.Log("oiiiiiii");
     }
 
+
+    // Desativa ou reativa coliders e scripts interativos
+    private void SetColisoresDaCena(Scene cena, bool ativo)
+    {
+        foreach (GameObject obj in cena.GetRootGameObjects())
+        {
+            foreach (var tilemapCollider in obj.GetComponentsInChildren<TilemapCollider2D>(true))
+            {
+                tilemapCollider.enabled = ativo;
+            }
+
+            foreach (var boxCollider in obj.GetComponentsInChildren<BoxCollider2D>(true))
+            {
+                boxCollider.enabled = ativo;
+            }
+
+            foreach (var script in obj.GetComponentsInChildren<MonoBehaviour>(true))
+            {
+                if (script.GetType().Name.Contains("Move") || script.GetType().Name.Contains("Controller"))
+                {
+                    script.enabled = ativo;
+                }
+            }
+        }
+    }
+
+    // Detecta descarregamento da cena PuzzleTransition para reativar
+    private void OnSceneUnloaded(Scene unloadedScene)
+    {
+        if (unloadedScene.name == "PuzzleTransition")
+        {
+            Scene cenaAnterior = SceneManager.GetSceneByName("startTransition_");
+            if (cenaAnterior.IsValid())
+            {
+                SetColisoresDaCena(cenaAnterior, true);
+            }
+        }
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneUnloaded -= OnSceneUnloaded;
+    }
+
+    public void IniciarDialogoPosPuzzle()
+    {
+        dialogueManager.dialoguePanel.SetActive(true);
+        StartCoroutine(DialogoDepoisDoPuzzle());
+    }
+
+    private IEnumerator DialogoDepoisDoPuzzle()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        var falasPosPuzzle = new List<DialogueManager.DialogueLine>
+        {
+            new DialogueManager.DialogueLine
+            {
+                speakerName = personagem1Name,
+                speakerImage = personagem1Foto,
+                text = "E esse aqui? Por que o rosto está borrado?"
+            },
+            new DialogueManager.DialogueLine
+            {
+                speakerName = personagem2Name,
+                speakerImage = personagem2Foto,
+                text = "Eu não lembro... Mas ele era importante. Muito"
+            }
+        };
+
+        dialogueManager.StartDialogue(falasPosPuzzle);
+        yield return EsperarDialogoTerminar();
+    }
 }
+
+
+

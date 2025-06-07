@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
   [Header("Game Elements")]
-  [Range(2, 4)]
+  [Range(2, 6)]
   [SerializeField] private int difficulty = 4;
   [SerializeField] private Transform gameHolder;
   [SerializeField] private Transform piecePrefab;
@@ -27,15 +28,19 @@ public class GameManager : MonoBehaviour {
   private int piecesCorrect;
 
   void Start() {
+    // Create the UI
     foreach (Texture2D texture in imageTextures) {
       Image image = Instantiate(levelSelectPrefab, levelSelectPanel);
       image.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
+      // Assign button action
       image.GetComponent<Button>().onClick.AddListener(delegate { StartGame(texture); });
     }
   }
 
   public void StartGame(Texture2D jigsawTexture) {
+    // Hide the UI
     levelSelectPanel.gameObject.SetActive(false);
+
     pieces = new List<Transform>();
     dimensions = GetDimensions(jigsawTexture, difficulty);
     CreateJigsawPieces(jigsawTexture);
@@ -63,7 +68,6 @@ public class GameManager : MonoBehaviour {
 
     for (int row = 0; row < dimensions.y; row++) {
       for (int col = 0; col < dimensions.x; col++) {
-        // ---------- USO DE INSTANTIATE ---------- 
         Transform piece = Instantiate(piecePrefab, gameHolder);
         piece.localPosition = new Vector3(
           (-width * dimensions.x / 2) + (width * col) + (width / 2),
@@ -91,8 +95,10 @@ public class GameManager : MonoBehaviour {
     float orthoHeight = Camera.main.orthographicSize;
     float screenAspect = (float)Screen.width / Screen.height;
     float orthoWidth = (screenAspect * orthoHeight);
+
     float pieceWidth = width * gameHolder.localScale.x;
     float pieceHeight = height * gameHolder.localScale.y;
+
     orthoHeight -= pieceHeight;
     orthoWidth -= pieceWidth;
 
@@ -105,6 +111,7 @@ public class GameManager : MonoBehaviour {
 
   private void UpdateBorder() {
     LineRenderer lineRenderer = gameHolder.GetComponent<LineRenderer>();
+
     float halfWidth = (width * dimensions.x) / 2f;
     float halfHeight = (height * dimensions.y) / 2f;
     float borderZ = 0f;
@@ -142,27 +149,55 @@ public class GameManager : MonoBehaviour {
     }
   }
 
-  // ---------- SOLUÇÃO PARA POSICIONAMENTO CORRETO DAS PEÇAS ---------- 
-  private void SnapAndDisableIfCorrect()
-  {
+  private void SnapAndDisableIfCorrect() {
     int pieceIndex = pieces.IndexOf(draggingPiece);
     int col = pieceIndex % dimensions.x;
     int row = pieceIndex / dimensions.x;
 
-    Vector2 targetPosition = new((-width * dimensions.x / 2) + (width * col) + (width / 2),
-                                 (-height * dimensions.y / 2) + (height * row) + (height / 2));
+    Vector2 targetPosition = new Vector2(
+        (-width * dimensions.x / 2) + (width * col) + (width / 2),
+        (-height * dimensions.y / 2) + (height * row) + (height / 2)
+    );
 
-    if (Vector2.Distance(draggingPiece.localPosition, targetPosition) < (width / 2))
-    {
-      draggingPiece.localPosition = targetPosition;
+    if (Vector2.Distance(draggingPiece.localPosition, targetPosition) < (width / 2)) {
+      draggingPiece.localPosition = new Vector3(targetPosition.x, targetPosition.y, -1f);
       draggingPiece.GetComponent<BoxCollider2D>().enabled = false;
+
       piecesCorrect++;
-      if (piecesCorrect == pieces.Count)
-      {
-        playAgainButton.SetActive(true);
+      if (piecesCorrect == pieces.Count) {
+        Debug.Log("Puzzle completo!");
+        StartCoroutine(VoltarParaCenaAnterior());
       }
     }
   }
+
+  private IEnumerator VoltarParaCenaAnterior() {
+      yield return new WaitForSeconds(1f);
+
+      AsyncOperation unload = SceneManager.UnloadSceneAsync("PuzzleTransition");
+
+      while (!unload.isDone) {
+          yield return null;
+      }
+
+      // Tente obter e ativar apenas se a cena for válida
+      Scene cenaRetorno = SceneManager.GetSceneByName("startTransition_");
+      if (cenaRetorno.IsValid() && cenaRetorno.isLoaded) {
+          SceneManager.SetActiveScene(cenaRetorno);
+      } else {
+          Debug.LogWarning("⚠️ A cena startTransition_ não está carregada. Ignorando SetActiveScene.");
+      }
+
+      yield return new WaitForSeconds(0.1f);
+
+      StartCutScene cutscene = Object.FindFirstObjectByType<StartCutScene>();
+      if (cutscene != null) {
+          cutscene.IniciarDialogoPosPuzzle();
+      } else {
+          Debug.LogWarning("❌ StartCutScene não encontrado.");
+      }
+  }
+
 
   public void RestartGame() {
     foreach (Transform piece in pieces) {
@@ -174,3 +209,4 @@ public class GameManager : MonoBehaviour {
     levelSelectPanel.gameObject.SetActive(true);
   }
 }
+
