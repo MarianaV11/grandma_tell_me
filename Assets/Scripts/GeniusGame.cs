@@ -11,7 +11,7 @@ public class GeniusGame : MonoBehaviour
     public Button[] colorButtons; // 0 = verde, 1 = vermelho, 2 = azul, 3 = amarelo
 
     [Header("Configuração de Dificuldade")]
-    public bool usarDificuldadeManual = true;
+    public bool usarDificuldadeManual = false;
     public Dificuldade dificuldadeSelecionada = Dificuldade.Facil;
 
     [Header("Controle de Jogo")]

@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
   [Header("Game Elements")]
   [Range(2, 6)]
-  [SerializeField] private int difficulty = 4;
   [SerializeField] private Transform gameHolder;
   [SerializeField] private Transform piecePrefab;
 
@@ -16,7 +15,14 @@ public class GameManager : MonoBehaviour {
   [SerializeField] private Transform levelSelectPanel;
   [SerializeField] private Image levelSelectPrefab;
   [SerializeField] private GameObject playAgainButton;
+  
+  [Header("Configuração de Dificuldade")]
+  public bool usarDificuldadeManual = false;
+  public Dificuldade dificuldadeSelecionada = Dificuldade.Facil;
+  private int difficulty = 4;
 
+  public event System.Action OnGameFinished;
+  
   private List<Transform> pieces;
   private Vector2Int dimensions;
   private float width;
@@ -28,12 +34,31 @@ public class GameManager : MonoBehaviour {
   private int piecesCorrect;
 
   void Start() {
+    Dificuldade modo = usarDificuldadeManual ? dificuldadeSelecionada : ModoDificuldadeSelecionado.dificuldade;
+    DefinirDificuldade(modo);
+      
     // Create the UI
     foreach (Texture2D texture in imageTextures) {
       Image image = Instantiate(levelSelectPrefab, levelSelectPanel);
       image.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
       // Assign button action
       image.GetComponent<Button>().onClick.AddListener(delegate { StartGame(texture); });
+    }
+  }
+  
+  void DefinirDificuldade(Dificuldade modo)
+  {
+    switch (modo)
+    {
+      case Dificuldade.Facil:
+        difficulty = 3;
+        break;
+      case Dificuldade.Medio:
+        difficulty = 4;
+        break;
+      case Dificuldade.Dificil:
+        difficulty = 5;
+        break;
     }
   }
 
@@ -96,8 +121,8 @@ public class GameManager : MonoBehaviour {
     float screenAspect = (float)Screen.width / Screen.height;
     float orthoWidth = (screenAspect * orthoHeight);
 
-    float pieceWidth = width * gameHolder.localScale.x;
-    float pieceHeight = height * gameHolder.localScale.y;
+    float pieceWidth = width * transform.localScale.x;
+    float pieceHeight = height * transform.localScale.y;
 
     orthoHeight -= pieceHeight;
     orthoWidth -= pieceWidth;
@@ -165,37 +190,10 @@ public class GameManager : MonoBehaviour {
 
       piecesCorrect++;
       if (piecesCorrect == pieces.Count) {
-        Debug.Log("Puzzle completo!");
-        StartCoroutine(VoltarParaCenaAnterior());
+        //Debug.Log("Puzzle completo!");
+        OnGameFinished?.Invoke();
       }
     }
-  }
-
-  private IEnumerator VoltarParaCenaAnterior() {
-      yield return new WaitForSeconds(1f);
-
-      AsyncOperation unload = SceneManager.UnloadSceneAsync("PuzzleTransition");
-
-      while (!unload.isDone) {
-          yield return null;
-      }
-
-      // Tente obter e ativar apenas se a cena for válida
-      Scene cenaRetorno = SceneManager.GetSceneByName("startTransition_");
-      if (cenaRetorno.IsValid() && cenaRetorno.isLoaded) {
-          SceneManager.SetActiveScene(cenaRetorno);
-      } else {
-          Debug.LogWarning("⚠️ A cena startTransition_ não está carregada. Ignorando SetActiveScene.");
-      }
-
-      yield return new WaitForSeconds(0.1f);
-
-      StartCutScene cutscene = Object.FindFirstObjectByType<StartCutScene>();
-      if (cutscene != null) {
-          cutscene.IniciarDialogoPosPuzzle();
-      } else {
-          Debug.LogWarning("❌ StartCutScene não encontrado.");
-      }
   }
 
 

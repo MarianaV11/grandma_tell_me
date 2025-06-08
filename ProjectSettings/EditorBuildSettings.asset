@@ -13,14 +13,14 @@ EditorBuildSettings:
     guid: ece9caebd7da19f4db51d0ab5de49149
   - enabled: 1
     path: Assets/Scenes/Puzzle.unity
-    guid: e946bcf65a4f3c94491bcdde60f544a2
+    guid: 3b3fa96d24b4c3f408a130b80ab21c33
   - enabled: 1
     path: Assets/Scenes/startTransition.unity
-    guid: ccc1214b79308ac42833292be2aa27c9
+    guid: 307f00a15fad6d3428bf207b61d87576
   - enabled: 1
     path: Assets/Scenes/PuzzleTransition.unity
-    guid: 7710134f65a71a646bedd59def5c1510
-  - enabled: 1
+    guid: 7de8bd0369bd6a24fb6d374e4fe6dc09
+  - enabled: 0
     path: Assets/Scenes/OverlayScene.unity
     guid: 3f1fb6d209585c04db6c51473b2fb56c
   m_configObjects:
