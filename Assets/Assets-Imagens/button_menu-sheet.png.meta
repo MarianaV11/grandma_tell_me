@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 12884f3aa38c6f546aac04ca53d4f8cf
+guid: 2c79bb88a5e5f144a80e18755da152f0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2179039761238080775
-    second: jogar_button 1_0
+      213: 8208500056176454559
+    second: button_menu-sheet_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: jogar_button 1_0
+      name: button_menu-sheet_0
       rect:
         serializedVersion: 2
-        x: 53
-        y: 53
-        width: 1334
-        height: 470
+        x: 0
+        y: 0
+        width: 962
+        height: 270
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 70d3c082e118d3e10800000000000000
-      internalID: 2179039761238080775
+      spriteID: f9beb238f437ae170800000000000000
+      internalID: 8208500056176454559
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      jogar_button 1_0: 2179039761238080775
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
