@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GranddaughterController : MonoBehaviour
 {
-    public float moveSpeed = 1f;
+    public float moveSpeed = 2f;
     private Vector2 _movement;
     
     private Rigidbody2D _rb;
@@ -21,7 +21,7 @@ public class GranddaughterController : MonoBehaviour
         // Captura do input WASD
         _movement.x = Input.GetAxisRaw("Horizontal");
         _movement.y = Input.GetAxisRaw("Vertical");
-        
+    
         // Define animação idle ou walk dependendo do movimento
         UpdateAnimation();
     }

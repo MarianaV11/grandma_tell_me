@@ -245,9 +245,10 @@ GameObject:
   - component: {fileID: 8334406481038522252}
   - component: {fileID: 8794576730291270198}
   - component: {fileID: 8929896887465229006}
+  - component: {fileID: 8892637257499047067}
   m_Layer: 0
   m_Name: granddaughter
-  m_TagString: Untagged
+  m_TagString: player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -419,3 +420,16 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.138551, y: 0.18728167}
   m_EdgeRadius: 0
+--- !u!114 &8892637257499047067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3254726118563779572}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f720758d7561084bbb99cc9663231de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 3

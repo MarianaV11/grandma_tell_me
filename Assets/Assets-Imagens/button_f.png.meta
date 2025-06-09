@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 12884f3aa38c6f546aac04ca53d4f8cf
+guid: 8784f18b3831d3b468425a71d746da8c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2179039761238080775
-    second: jogar_button 1_0
+      213: 5397893829091177397
+    second: button_f_0
+  - first:
+      213: -5473400451734736721
+    second: button_f_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +40,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +78,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: jogar_button 1_0
+      name: button_f_0
       rect:
         serializedVersion: 2
-        x: 53
-        y: 53
-        width: 1334
-        height: 470
+        x: 0
+        y: 0
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +118,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 70d3c082e118d3e10800000000000000
-      internalID: 2179039761238080775
+      spriteID: 5b3b04a96db29ea40800000000000000
+      internalID: 5397893829091177397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button_f_1
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 0
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa073e8d9439a04b0800000000000000
+      internalID: -5473400451734736721
       vertices: []
       indices: 
       edges: []
@@ -125,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 3627e39d1b852514898d4c530e83de22
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      jogar_button 1_0: 2179039761238080775
+      button_f_0: 5397893829091177397
+      button_f_1: -5473400451734736721
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

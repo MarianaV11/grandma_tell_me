@@ -32,7 +32,6 @@ public class DialogueManager : MonoBehaviour
 
         if (!_isTyping && _dialogueQueue.Count == 0 && Input.GetMouseButton(0))
         {
-            Debug.Log("Dialogo finalizado!");
             EndDialogue();
             return;
         }
@@ -60,49 +59,48 @@ public class DialogueManager : MonoBehaviour
 
         DisplayNextLine();
     }
+    
+    private Color GetSpeakerColor(string speakerName)
+    {
+        switch (speakerName)
+        {
+            case "Helena":
+                return new Color32(0, 181, 255, 255); // Azul claro
+            case "Elisa":
+                return new Color32(178, 0, 255, 255); // Roxo
+            default:
+                return Color.white;
+        }
+    }
 
     void DisplayNextLine()
     {
-
         DialogueLine line = _dialogueQueue.Dequeue();
 
         // Atualiza UI
         nameText.text = line.speakerName;
         portraitImage.sprite = line.speakerImage;
 
-        // Muda a cor dos filhos "Header" e "Body" com base na personagem
-        Color corHelena = new Color32(0, 181, 255, 255); // Azul claro (00B5FF)
-        Color corElisa = new Color32(178, 0, 255, 255); // Roxo (B200FF)
-        Color corPadrao = Color.white;
+        Color speakerColor = GetSpeakerColor(line.speakerName);
 
-        Color corSelecionada = corPadrao;
-
-        switch (line.speakerName)
-        {
-            case "Helena":
-                corSelecionada = corHelena;
-                break;
-            case "Elisa":
-                corSelecionada = corElisa;
-                break;
-        }
-
+        // Muda a cor dos elementos visuais
         Transform headerTransform = dialoguePanel.transform.Find("Header");
         Transform bodyTransform = dialoguePanel.transform.Find("Body");
 
         if (headerTransform != null)
-            headerTransform.GetComponent<Image>().color = corSelecionada;
+            headerTransform.GetComponent<Image>().color = speakerColor;
 
         if (bodyTransform != null)
-            bodyTransform.GetComponent<Image>().color = corSelecionada;
+            bodyTransform.GetComponent<Image>().color = speakerColor;
 
+        dialogueText.color = speakerColor;
 
-        // Inicia digitação
         if (_typingCoroutine != null)
             StopCoroutine(_typingCoroutine);
 
         _typingCoroutine = StartCoroutine(TypeSentence(line.text));
     }
+
 
     IEnumerator TypeSentence(string sentence)
     {
