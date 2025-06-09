@@ -41,6 +41,9 @@ public class GeniusGame : MonoBehaviour
     public AudioClip somAmarelo;
     public AudioClip somErro;
     private AudioSource audioSource;
+    
+    
+    public event System.Action OnGameFinished;
 
     void Start()
     {
@@ -50,17 +53,19 @@ public class GeniusGame : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         cadeadoFechadoGroup = cadeadoFechado.GetComponent<CanvasGroup>();
-        cadeadoFechadoGroup.alpha = 0f;
+        cadeadoFechadoGroup.alpha = 1f; // Cadeado fechado visível
         cadeadoFechadoGroup.interactable = false;
         cadeadoFechadoGroup.blocksRaycasts = false;
-        cadeadoFechado.SetActive(true);
 
         buttonContainerGroup = buttonContainer.GetComponent<CanvasGroup>();
         buttonContainerGroup.alpha = 1f;
 
-        cadeadoAberto.SetActive(false);
+        cadeadoFechado.SetActive(true);     
+        cadeadoAberto.SetActive(false);     // Inicia fechado
+
         StartCoroutine(StartSequence());
     }
+
 
     void DefinirDificuldade(Dificuldade modo)
     {
@@ -213,53 +218,58 @@ public class GeniusGame : MonoBehaviour
     {
         inputEnabled = false;
         rodadaLabel.gameObject.SetActive(false);
-        yield return StartCoroutine(FadeOutGenius());
-        yield return new WaitForSeconds(0.5f);
-        StartCoroutine(FadeInCadeado());
+
+        // Começa fadeOut do cadeadoFechado e buttonContainer
+        yield return StartCoroutine(FadeTransitionDual(cadeadoFechado, cadeadoAberto, fadeOutFechado: true));
+        
+        OnGameFinished?.Invoke();
     }
 
-    IEnumerator FadeOutGenius()
+    
+    IEnumerator FadeTransitionDual(GameObject cadeadoFechado, GameObject cadeadoAberto, bool fadeOutFechado)
     {
         float duration = 1f;
         float elapsed = 0f;
 
-        while (elapsed < duration)
-        {
-            elapsed += Time.deltaTime;
-            buttonContainerGroup.alpha = Mathf.Lerp(1f, 0f, elapsed / duration);
-            yield return null;
-        }
-
-        buttonContainer.SetActive(false);
-    }
-
-    IEnumerator FadeInCadeado()
-    {
-        float duration = 1f;
-        float elapsed = 0f;
-
-        cadeadoFechadoGroup.alpha = 0f;
-        cadeadoFechadoGroup.interactable = true;
-        cadeadoFechadoGroup.blocksRaycasts = true;
-
-        while (elapsed < duration)
-        {
-            elapsed += Time.deltaTime;
-            cadeadoFechadoGroup.alpha = Mathf.Clamp01(elapsed / duration);
-            yield return null;
-        }
-    }
-
-    public void AbrirCadeado()
-    {
-        cadeadoFechado.SetActive(false);
+        // Garantir objetos ativos
+        cadeadoFechado.SetActive(true);
         cadeadoAberto.SetActive(true);
-        StartCoroutine(TrocarCena());
+        buttonContainer.SetActive(true);
+
+        // Obter ou adicionar CanvasGroup
+        CanvasGroup grupoFechado = cadeadoFechado.GetComponent<CanvasGroup>() ?? cadeadoFechado.AddComponent<CanvasGroup>();
+        CanvasGroup grupoAberto = cadeadoAberto.GetComponent<CanvasGroup>() ?? cadeadoAberto.AddComponent<CanvasGroup>();
+        CanvasGroup grupoGenius = buttonContainer.GetComponent<CanvasGroup>() ?? buttonContainer.AddComponent<CanvasGroup>();
+
+        // Setar alphas iniciais
+        grupoFechado.alpha = 1f;
+        grupoAberto.alpha = 0f;
+        grupoGenius.alpha = 1f;
+
+        grupoFechado.interactable = false;
+        grupoFechado.blocksRaycasts = false;
+
+        grupoAberto.interactable = false;
+        grupoAberto.blocksRaycasts = false;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / duration);
+
+            grupoFechado.alpha = Mathf.Lerp(1f, 0f, t);
+            grupoAberto.alpha = Mathf.Lerp(0f, 1f, t);
+            grupoGenius.alpha = Mathf.Lerp(1f, 1f, t); // Se quiser fade do Genius também, troque isso por Lerp(1f, 0f, t)
+
+            yield return null;
+        }
+
+        grupoFechado.alpha = 0f;
+        grupoAberto.alpha = 1f;
+
+        cadeadoFechado.SetActive(false);
     }
 
-    IEnumerator TrocarCena()
-    {
-        yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("NomeDaCenaFinal");
-    }
+
+
 }

@@ -19,12 +19,11 @@ public class StartCutScene : MonoBehaviour
     public float moveSpeed = 5f;
     public Vector2 posInicial1 = new Vector2(-1.5f, -0.5f);
     public Vector2 posInicial2 = new Vector2(-5.5f, 4);
-    public Vector2 destino1 = new Vector2(-1.5f, 2);
-    public Vector2 destino2 = new Vector2(-1.5f, 2.5f);
 
     [SerializeField] private DialogueManager dialogueManager;
 
     private GameObject personagem1;
+    private GranddaughterController granddaughterController;
     private GameObject personagem2;
     private CharacterMove mover1;
     private CharacterMove mover2;
@@ -32,6 +31,8 @@ public class StartCutScene : MonoBehaviour
     private void Start()
     {
         personagem1 = Instantiate(personagem1Prefab, posInicial1, Quaternion.identity);
+        granddaughterController = personagem1.GetComponent<GranddaughterController>();
+        granddaughterController.enabled = false;
         personagem2 = Instantiate(personagem2Prefab, posInicial2, Quaternion.identity);
         mover1 = new CharacterMove(personagem1, moveSpeed);
         mover2 = new CharacterMove(personagem2, moveSpeed);
@@ -45,13 +46,14 @@ public class StartCutScene : MonoBehaviour
         /*
         yield return MostrarDialogo(personagem1Name, personagem1Foto, "Ahhh finalmente cheguei!!!");
         yield return MostrarDialogo(personagem1Name, personagem1Foto, "Essa casa tem um cheiro que me faz lembrar da infância... Canela e saudade.");
-
-        yield return MoverPersonagem(mover1, destino1);
-        yield return MostrarDialogo(personagem2Name, personagem2Foto, "Ah Helena que bom que você chegou!");
+        */
+        yield return MoverPersonagem(mover1, new Vector2(-1.5f, 2));
+        // yield return MostrarDialogo(personagem2Name, personagem2Foto, "Ah Helena que bom que você chegou!");
 
         yield return MoverPersonagem(mover2, new Vector2(-1.5f, 4));
-        yield return MoverPersonagem(mover2, destino2);
-
+        yield return MoverPersonagem(mover2, new Vector2(-1.5f, 2.5f));
+        
+        /*
         yield return MostrarDialogos(new List<string>
         {
             "Ah, minha querida... \nEsta casa guarda muitas memórias.",
@@ -59,7 +61,7 @@ public class StartCutScene : MonoBehaviour
             "Tome... \nEssa aqui é um retrato que há muito tempo foi tirado!",
             "nela aparecem pessoas muito importantes para mim\nE para você também, pequena..."
         }, personagem2Name, personagem2Foto);
-        */
+
         yield return IniciarPuzzle();
 
         yield return MostrarDialogos(new List<string>
@@ -75,6 +77,13 @@ public class StartCutScene : MonoBehaviour
         }, personagem2Name, personagem2Foto);
 
         yield return MostrarDialogo(personagem1Name, personagem1Foto, "Tudo bem vovó, eu vou te ajudar a descobrir\nquem é essa pessoa!");
+        */
+        yield return MoverPersonagem(mover2, new Vector2(-1.5f, 4.6f));
+        yield return MoverPersonagem(mover2, new Vector2(0.5f,4.6f));
+        Debug.Log("idle_down");
+        mover2.setAnimation("idle_down");
+    
+        granddaughterController.enabled = true;
     }
 
     private IEnumerator MostrarDialogo(string nome, Sprite imagem, string texto)
@@ -102,6 +111,12 @@ public class StartCutScene : MonoBehaviour
         dialogueManager.StartDialogue(falas);
         yield return EsperarDialogoTerminar();
     }
+    
+    private IEnumerator EsperarDialogoTerminar()
+    {
+        while (dialogueManager.IsFinished() || !Input.GetMouseButtonDown(0))
+            yield return null;
+    }
 
     private IEnumerator MoverPersonagem(CharacterMove mover, Vector2 destino)
     {
@@ -111,12 +126,6 @@ public class StartCutScene : MonoBehaviour
             chegou = mover.MoverPara(destino, Time.fixedDeltaTime);
             yield return null;
         }
-    }
-
-    private IEnumerator EsperarDialogoTerminar()
-    {
-        while (dialogueManager.IsFinished() || !Input.GetMouseButtonDown(0))
-            yield return null;
     }
 
     private IEnumerator IniciarPuzzle()
@@ -135,11 +144,12 @@ public class StartCutScene : MonoBehaviour
         while (!puzzleFinalizado)
             yield return null;
 
+        yield return new WaitForSeconds(1f);
+        Puzzle.SetActive(false);
+        
         if (cenaAtual.IsValid())
             SetColisoresDaCena(cenaAtual, true);
 
-        yield return new WaitForSeconds(1f);
-        Puzzle.SetActive(false);
     }
 
     private void SetColisoresDaCena(Scene cena, bool ativo)

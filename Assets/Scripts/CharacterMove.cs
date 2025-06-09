@@ -32,6 +32,11 @@ public class CharacterMove
         return true; // Chegou
     }
 
+    public void setAnimation(string anim_name)
+    {
+        animator.Play(anim_name);
+    }
+
     private void AtualizarAnimacao(Vector2 direcao)
     {
         if (direcao != Vector2.zero)
