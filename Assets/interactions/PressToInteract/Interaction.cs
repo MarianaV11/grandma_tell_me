@@ -94,8 +94,7 @@ public class InteractionTrigger : MonoBehaviour
         while (!dialogueManager.IsFinished() || !Input.GetMouseButtonDown(0))
             yield return null;
     }
-
-
+    
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("player"))
