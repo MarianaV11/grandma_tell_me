@@ -20,6 +20,10 @@ public class OutDorPuzzleScript : MonoBehaviour
     [Header("Game")]
     [SerializeField] private GameObject memoryGameObject;
     
+    [SerializeField] private GameObject imageDisplayPanel; // o panel que você criou
+    [SerializeField] private RectTransform imageRectTransform; // o objeto Image dentro do panel
+    private bool isImageDisplayed = false;
+
     void Start()
     {
         if (interactionHint != null)
@@ -43,6 +47,17 @@ public class OutDorPuzzleScript : MonoBehaviour
         {
             StartCoroutine(FoundMessage());
         }
+        
+        if (isImageDisplayed && Input.GetMouseButtonDown(0))
+        {
+            Vector2 mousePos = Input.mousePosition;
+            if (!RectTransformUtility.RectangleContainsScreenPoint(imageRectTransform, mousePos))
+            {
+                imageDisplayPanel.SetActive(false);
+                isImageDisplayed = false;
+                StartCoroutine(ImageMessage());
+            }
+        }
     }
     
     private IEnumerator FoundMessage()
@@ -58,6 +73,18 @@ public class OutDorPuzzleScript : MonoBehaviour
 
         }
 
+        yield return ShowMessages(mensagens, speakerName, speakerImage);
+    }
+    
+    private IEnumerator ImageMessage()
+    {
+        List<string> mensagens = new List<string>();
+        
+        mensagens.Add("É o meu irmão... Como eu nunca soube disso?");
+        mensagens.Add("Se ele é meu irmão...");
+        mensagens.Add("E também é irmão da vó...");
+        mensagens.Add("Então... eu sou...");
+        
         yield return ShowMessages(mensagens, speakerName, speakerImage);
     }
     
@@ -102,5 +129,7 @@ public class OutDorPuzzleScript : MonoBehaviour
     private void OnMemoryGameFinished()
     {
         memoryGameObject.gameObject.SetActive(false);
+        imageDisplayPanel.SetActive(true);
+        isImageDisplayed = true;
     }
 }
