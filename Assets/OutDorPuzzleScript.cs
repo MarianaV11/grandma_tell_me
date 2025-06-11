@@ -80,7 +80,7 @@ public class OutDorPuzzleScript : MonoBehaviour
     {
         List<string> mensagens = new List<string>();
         
-        mensagens.Add("É o meu irmão... Como eu nunca soube disso?");
+        mensagens.Add("É o meu irmão... Como eu não lembrava disso?");
         mensagens.Add("Se ele é meu irmão...");
         mensagens.Add("E também é irmão da vó...");
         mensagens.Add("Então... eu sou...");
