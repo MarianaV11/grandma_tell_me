@@ -12,7 +12,6 @@ public class ManagerFlorest : MonoBehaviour
     [SerializeField] private Sprite personagem1Foto;
 
     [Header("Configuração da Cena da Floresta")]
-    public GameObject MemoryGame;
     public float moveSpeed = 10f;
     public Vector2 posInicial1 = new Vector2(-1.5f, -0.5f);
 

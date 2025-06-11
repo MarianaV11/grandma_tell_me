@@ -17,15 +17,24 @@ public class OutDorPuzzleScript : MonoBehaviour
     [Header("Action Definition")]
     [SerializeField] private bool isHouseByLake = false;
 
-    // Ahead is the game config
-    //[Header("Game")]
-    //[SerializeField] private GameObject memoryGameObject;
+    [Header("Game")]
+    [SerializeField] private GameObject memoryGameObject;
     
-    //private Memory memoryGame;
     void Start()
     {
         if (interactionHint != null)
             interactionHint.SetActive(false);
+        
+        CardsController cards = memoryGameObject.GetComponentInChildren<CardsController>();
+        if (cards != null)
+        {
+            cards.OnGameFinished += OnMemoryGameFinished;
+            Debug.Log("Listener inscrito no evento OnGameFinished");
+        }
+        else
+        {
+            Debug.LogError("MemoryGame não encontrado no GameObject ou filhos!");
+        }
     }
 
     void Update()
@@ -45,9 +54,7 @@ public class OutDorPuzzleScript : MonoBehaviour
             mensagens.Add("Uma foto!!!");
             mensagens.Add("Mas ela está cheia de poeira \n Preciso chegar mais perto para ver o que é...");
             
-            //geniusGameObject.gameObject.SetActive(true);
-
-            // Conecta o evento do MemoryGame
+            memoryGameObject.gameObject.SetActive(true);
 
         }
 
@@ -90,5 +97,10 @@ public class OutDorPuzzleScript : MonoBehaviour
         isPlayerNearby = false;
         if (interactionHint != null)
             interactionHint.SetActive(false);
+    }
+    
+    private void OnMemoryGameFinished()
+    {
+        memoryGameObject.gameObject.SetActive(false);
     }
 }
