@@ -216,6 +216,7 @@ public class GeniusGame : MonoBehaviour
 
     IEnumerator FinalizarGenius()
     {
+        Debug.Log("Finalizing Genius Game"); 
         inputEnabled = false;
         rodadaLabel.gameObject.SetActive(false);
 

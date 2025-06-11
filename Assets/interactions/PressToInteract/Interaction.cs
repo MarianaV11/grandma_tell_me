@@ -19,11 +19,23 @@ public class InteractionTrigger : MonoBehaviour
     [Header("Game")]
     [SerializeField] private GameObject geniusGameObject;
     
-
+    private GeniusGame geniusGame;
+    
     void Start()
     {
         if (interactionHint != null)
             interactionHint.SetActive(false);
+        
+        GeniusGame genius = geniusGameObject.GetComponentInChildren<GeniusGame>();
+        if (genius != null)
+        {
+            genius.OnGameFinished += OnGeniusGameFinished;
+            Debug.Log("Listener inscrito no evento OnGameFinished");
+        }
+        else
+        {
+            Debug.LogError("GeniusGame não encontrado no GameObject ou filhos!");
+        }
     }
 
     void Update()
@@ -42,7 +54,15 @@ public class InteractionTrigger : MonoBehaviour
             mensagens.Add(foundMessage);
             mensagens.Add("Uma caixa de memórias?");
             mensagens.Add("Mas esta trancado, por que?\nA tranca não parece dificil de abrir.");
+            
             geniusGameObject.gameObject.SetActive(true);
+
+            // Conecta o evento do Genius
+            GeniusGame genius = geniusGameObject.GetComponent<GeniusGame>();
+            if (genius != null)
+            {
+                genius.OnGameFinished += OnGeniusGameFinished;
+            }
         }
         else
         {
@@ -94,5 +114,10 @@ public class InteractionTrigger : MonoBehaviour
             if (interactionHint != null)
                 interactionHint.SetActive(false);
         }
+    }
+    
+    private void OnGeniusGameFinished()
+    {
+        geniusGameObject.gameObject.SetActive(false);
     }
 }
