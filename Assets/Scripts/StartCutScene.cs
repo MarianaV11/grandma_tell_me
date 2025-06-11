@@ -43,17 +43,17 @@ public class StartCutScene : MonoBehaviour
     private IEnumerator RodarCutscene()
     {
         yield return new WaitForSeconds(1f);
-        /*
+        
         yield return MostrarDialogo(personagem1Name, personagem1Foto, "Ahhh finalmente cheguei!!!");
         yield return MostrarDialogo(personagem1Name, personagem1Foto, "Essa casa tem um cheiro que me faz lembrar da infância... Canela e saudade.");
-        */
+        
         yield return MoverPersonagem(mover1, new Vector2(-1.5f, 2));
-        // yield return MostrarDialogo(personagem2Name, personagem2Foto, "Ah Helena que bom que você chegou!");
+        yield return MostrarDialogo(personagem2Name, personagem2Foto, "Ah Helena que bom que você chegou!");
 
         yield return MoverPersonagem(mover2, new Vector2(-1.5f, 4));
         yield return MoverPersonagem(mover2, new Vector2(-1.5f, 2.5f));
         
-        /*
+        
         yield return MostrarDialogos(new List<string>
         {
             "Ah, minha querida... \nEsta casa guarda muitas memórias.",
@@ -77,7 +77,7 @@ public class StartCutScene : MonoBehaviour
         }, personagem2Name, personagem2Foto);
 
         yield return MostrarDialogo(personagem1Name, personagem1Foto, "Tudo bem vovó, eu vou te ajudar a descobrir\nquem é essa pessoa!");
-        */
+        
         yield return MoverPersonagem(mover2, new Vector2(-1.5f, 4.6f));
         yield return MoverPersonagem(mover2, new Vector2(0.5f,4.6f));
         Debug.Log("idle_down");
