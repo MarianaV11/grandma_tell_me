@@ -25,10 +25,11 @@ public class CardsController : MonoBehaviour
     private int matchedPairs;                                  // Quantos pares já foram encontrados
     private int numberOfPairs;                                 // Quantidade de pares escolhida pelo jogador
 
+    public event System.Action OnGameFinished;
     void Start()
     {
         // Eventos de clique
-        playAgainButton.onClick.AddListener(RestartGame);
+        playAgainButton.onClick.AddListener(FinishGame);
         startButton.onClick.AddListener(StartGame);
 
         // Define o máximo do slider como a quantidade de sprites disponíveis
@@ -55,22 +56,9 @@ public class CardsController : MonoBehaviour
     }
 
     // Reinicia o jogo e exibe novamente as opções de dificuldade
-    public void RestartGame()
+    public void FinishGame()
     {
-        // Remove todas as cartas da cena
-        foreach (Transform child in gridTransform)
-        {
-            Destroy(child.gameObject);
-        }
-
-        // Reseta estado
-        firstSelected = null;
-        secondSelected = null;
-
-        // Mostra novamente controles iniciais
-        startButton.gameObject.SetActive(true);
-        difficultySlider.gameObject.SetActive(true);
-        playAgainButton.gameObject.SetActive(false);
+        OnGameFinished?.Invoke();
     }
 
     // Prepara os sprites duplicados e embaralhados
