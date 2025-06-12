@@ -117,20 +117,12 @@ public class GameManager : MonoBehaviour {
   }
 
   private void Scatter() {
-    float orthoHeight = Camera.main.orthographicSize;
-    float screenAspect = (float)Screen.width / Screen.height;
-    float orthoWidth = (screenAspect * orthoHeight);
-
-    float pieceWidth = width * transform.localScale.x;
-    float pieceHeight = height * transform.localScale.y;
-
-    orthoHeight -= pieceHeight;
-    orthoWidth -= pieceWidth;
-
     foreach (Transform piece in pieces) {
-      float x = Random.Range(-orthoWidth, orthoWidth);
-      float y = Random.Range(-orthoHeight, orthoHeight);
-      piece.position = new Vector3(x, y, -1);
+      float x = Random.Range(-0.5f, 0.5f);
+      float y = Random.Range(-0.4f, 0.4f);
+      
+      Debug.Log("x: "+x+", y: "+y);
+      piece.localPosition = new Vector3(x, y, -1);
     }
   }
 

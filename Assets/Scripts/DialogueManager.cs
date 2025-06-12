@@ -127,7 +127,7 @@ public class DialogueManager : MonoBehaviour
     
     public bool IsFinished()
     {
-        return _isDialogueActive;
+        return !_isDialogueActive;
     }
 
 }
