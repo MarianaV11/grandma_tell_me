@@ -67,13 +67,12 @@ public class OutDorPuzzleScript : MonoBehaviour
         {
             mensagens.Add(foundMessage);
             mensagens.Add("Uma foto!!!");
-            mensagens.Add("Mas ela está cheia de poeira \n Preciso chegar mais perto para ver o que é...");
+            mensagens.Add("Mas ela está cheia de poeira \nPreciso chegar mais perto para ver o que é...");
             
+            yield return ShowMessages(mensagens, speakerName, speakerImage);
+
             memoryGameObject.gameObject.SetActive(true);
-
         }
-
-        yield return ShowMessages(mensagens, speakerName, speakerImage);
     }
     
     private IEnumerator ImageMessage()

@@ -15,7 +15,6 @@ public class CardsController : MonoBehaviour
     [Header("Controles de Interface")]
     [SerializeField] private Button playAgainButton;           // Botão "Jogar Novamente"
     [SerializeField] private Button startButton;               // Botão "Começar Jogo"
-    [SerializeField] private Slider difficultySlider;          // Slider para escolher o número de pares
 
     private List<Sprite> spritePairs;                          // Lista embaralhada de sprites duplicados
     private Card firstSelected;
@@ -25,17 +24,22 @@ public class CardsController : MonoBehaviour
     private int matchedPairs;                                  // Quantos pares já foram encontrados
     private int numberOfPairs;                                 // Quantidade de pares escolhida pelo jogador
 
+    [Header("Configuração de Dificuldade")]
+    public bool usarDificuldadeManual = false;
+    public Dificuldade dificuldadeSelecionada;
+    private int difficulty = 2;
+
     public event System.Action OnGameFinished;
     void Start()
     {
+        Dificuldade modo = usarDificuldadeManual ? dificuldadeSelecionada : ModoDificuldadeSelecionado.dificuldade;
+        DefinirDificuldade(modo);
+        
         // Eventos de clique
         playAgainButton.onClick.AddListener(FinishGame);
         startButton.onClick.AddListener(StartGame);
 
         // Define o máximo do slider como a quantidade de sprites disponíveis
-        difficultySlider.maxValue = sprites.Length;
-        difficultySlider.minValue = 1;
-        difficultySlider.value = 2; // valor padrão
 
         // Oculta os botões de reinício até o jogo terminar
         playAgainButton.gameObject.SetActive(false);
@@ -44,11 +48,10 @@ public class CardsController : MonoBehaviour
     // Inicia o jogo com a dificuldade escolhida
     void StartGame()
     {
-        numberOfPairs = (int)difficultySlider.value;
+        numberOfPairs = difficulty;
 
         // Esconde controles iniciais
         startButton.gameObject.SetActive(false);
-        difficultySlider.gameObject.SetActive(false);
 
         PrepareSprites();
         CreateCards();
@@ -141,6 +144,22 @@ public class CardsController : MonoBehaviour
         {
             int j = Random.Range(0, i + 1);
             (spriteList[i], spriteList[j]) = (spriteList[j], spriteList[i]);
+        }
+    }
+    
+    void DefinirDificuldade(Dificuldade modo)
+    {
+        switch (modo)
+        {
+            case Dificuldade.Facil:
+                difficulty = 3;
+                break;
+            case Dificuldade.Medio:
+                difficulty = 4;
+                break;
+            case Dificuldade.Dificil:
+                difficulty = 5;
+                break;
         }
     }
 }

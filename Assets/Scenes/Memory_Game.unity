@@ -207,8 +207,13 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6540458602083453033, guid: 58781cfa66285a04e971bb6689fbd5ba, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2081085101851374727, guid: 58781cfa66285a04e971bb6689fbd5ba, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58781cfa66285a04e971bb6689fbd5ba, type: 3}
