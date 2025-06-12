@@ -43,7 +43,6 @@ public class StartCutScene : MonoBehaviour
     private IEnumerator RodarCutscene()
     {
         yield return new WaitForSeconds(1f);
-        
         yield return MostrarDialogo(personagem1Name, personagem1Foto, "Ahhh finalmente cheguei!!!");
         yield return MostrarDialogo(personagem1Name, personagem1Foto, "Essa casa tem um cheiro que me faz lembrar da infância... Canela e saudade.");
         
@@ -52,7 +51,6 @@ public class StartCutScene : MonoBehaviour
 
         yield return MoverPersonagem(mover2, new Vector2(-1.5f, 4));
         yield return MoverPersonagem(mover2, new Vector2(-1.5f, 2.5f));
-        
         
         yield return MostrarDialogos(new List<string>
         {
@@ -80,9 +78,7 @@ public class StartCutScene : MonoBehaviour
         
         yield return MoverPersonagem(mover2, new Vector2(-1.5f, 4.6f));
         yield return MoverPersonagem(mover2, new Vector2(0.5f,4.6f));
-        Debug.Log("idle_down");
         mover2.setAnimation("idle_down");
-    
         granddaughterController.enabled = true;
     }
 
@@ -114,7 +110,7 @@ public class StartCutScene : MonoBehaviour
     
     private IEnumerator EsperarDialogoTerminar()
     {
-        while (dialogueManager.IsFinished() || !Input.GetMouseButtonDown(0))
+        while (!dialogueManager.IsFinished() || !Input.GetMouseButtonDown(0))
             yield return null;
     }
 
